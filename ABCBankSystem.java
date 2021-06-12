@@ -1,22 +1,10 @@
-/***
- =================
-Name: Nicole Wilbur
-
-Project Name: CSC372-CTA01 -- PORTFOLIO MILESTONE #1 Corrections
-
-4/11/21 updates: comments along side code.
-	Summary, corrected spelling mistake, set upper limit on transaction amount, 
-	added validation loop for first and last names, fixed bug in checkbalance loop.
-==================
- ***/
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Iterator;
 
 public class ABCBankSystem {
-	
+
 	//control loop for main menu in main
 	public static int mainLoop (Scanner scnr) {
 		int userNeeds;
@@ -38,17 +26,17 @@ public class ABCBankSystem {
 		while(true);
 		return userNeeds;
 	}
-	//handles user input for deposit or withdrawal amounts                  //4-11-21 fixed all the withdrawal spelling mistakes
+	//handles user input for deposit or withdrawal amounts
 	public static double depositwithdrawalValidation(Scanner scnr) {
 		System.out.println("Enter the deposit or withdrawal amount: ");
 		double amountEntered = scnr.nextDouble();
-		while (amountEntered > 10000.00) {                                 //4-11-21 sets an upper limit on transaction amount
+		while (amountEntered > 10000.00) {
 			System.out.println ("ABC Bank has a per transaction limit of 10,000. Please enter a smaller amount.");
 			amountEntered = scnr.nextDouble();
 		}
 		while (amountEntered < 0) {
 			System.out.println("Please enter a valid positive dollar amount.");
-		    amountEntered = scnr.nextDouble(); 
+		    amountEntered = scnr.nextDouble();
 		}
 		return amountEntered;
 	}
@@ -58,18 +46,18 @@ public class ABCBankSystem {
 		int accountID = scnr.nextInt();
 		while (accountID < 0) {
 			System.out.println("Please enter a valid account ID number.");
-		    accountID = scnr.nextInt(); 
+		    accountID = scnr.nextInt();
 		}
 		return accountID;
 	}
 	//handles user input for adding another account menu
 	public static int addAnother (Scanner scnr) {
-		System.out.println("Type 1 to make another transaction or 2 to exit to the main menu: "); 
-		int addAnother = scnr.nextInt(); 
+		System.out.println("Type 1 to make another transaction or 2 to exit to the main menu: ");
+		int addAnother = scnr.nextInt();
 		while (!(addAnother == 1 || addAnother == 2)) {
-			System.out.println("Please enter a valid option."); 
-			addAnother = scnr.nextInt(); 
-			} 
+			System.out.println("Please enter a valid option.");
+			addAnother = scnr.nextInt();
+			}
 		return addAnother;
 	  }
 	//method for adding accounts
@@ -88,13 +76,13 @@ public class ABCBankSystem {
 				scnr.nextLine();
 				System.out.println("Enter the first name for the account: ");
 				String firstName = scnr.nextLine();
-				while (firstName.length() < 1) {									//4-11-21 added validation for firstName
+				while (firstName.length() < 1) {
 					System.out.println("Please enter a first name at least one character long.");
 					firstName = scnr.nextLine();
 				}
 				System.out.println("Enter the last name for the account: ");
 				String lastName = scnr.nextLine();
-				while (lastName.length() < 1) {                                     //4-11-21 added validation for lastName
+				while (lastName.length() < 1) {                                    
 					System.out.println("Please enter a last name at least one character long.");
 					lastName = scnr.nextLine();
 				}
@@ -137,18 +125,18 @@ public class ABCBankSystem {
 			Scanner scnr = new Scanner(System.in);
 			do {
 				double amountEntered = depositwithdrawalValidation(scnr);
-				
+
 				Iterator<BankAccount> accountIterator = accountListings.iterator();
-				
+
 				while (accountIterator.hasNext()) {
 					BankAccount account = accountIterator.next();
 		            if (account.getAccountID() == accountLoop(scnr)) {
-		                account.deposit(amountEntered);   
-		            	System.out.println("Deposit successful.");	                    
-		                break; 
+		                account.deposit(amountEntered);
+		            	System.out.println("Deposit successful.");
+		                break;
 		            }
 		            else {
-		                System.out.println("Account ID not Found."); 
+		                System.out.println("Account ID not Found.");
 		            }
 		        }
 			    printAccounts(accountListings);
@@ -168,18 +156,18 @@ public class ABCBankSystem {
 			Scanner scnr = new Scanner(System.in);
 			do {
 				double amountEntered = depositwithdrawalValidation(scnr);
-				
+
 				Iterator<BankAccount> accountIterator = accountListings.iterator();
-				
+
 				while (accountIterator.hasNext()) {
 					BankAccount account = accountIterator.next();
 		            if (account.getAccountID() == accountLoop(scnr)) {
-		                account.withdrawal(amountEntered);   
-		            	System.out.println("withdrawal successful.");	                    
-		                break; 
+		                account.withdrawal(amountEntered);
+		            	System.out.println("withdrawal successful.");
+		                break;
 		            }
 		            else {
-		                System.out.println("Account ID not Found."); 
+		                System.out.println("Account ID not Found.");
 		            }
 		        }
 			    printAccounts(accountListings);
@@ -197,17 +185,17 @@ public class ABCBankSystem {
 		String returnResult;
 		try {
 			Scanner scnr = new Scanner(System.in);
-			
+
 			do {
 				System.out.println("Please enter a valid account number:");
 				int accountID = scnr.nextInt();
 				Iterator<BankAccount> accountIterator = accountListings.iterator();
 				while (accountIterator.hasNext()) {
 					BankAccount account = accountIterator.next();
-		            if (account.getAccountID() ==  accountID) {  
-		            	System.out.println("The balance on account " + account.getAccountID() + " is " 
-		                                   + account.getBalance() + " dollars.");	                    
-		                break; 
+		            if (account.getAccountID() ==  accountID) {
+		            	System.out.println("The balance on account " + account.getAccountID() + " is "
+		                                   + account.getBalance() + " dollars.");
+		                break;
 		            }
 		        }
 			}
@@ -238,8 +226,8 @@ public class ABCBankSystem {
 			returnResult = "Failed";
 		}
 		System.out.println("Account listings print to screen status: " + returnResult);
-	} 
-	//main method		
+	}
+	//main method
 	public static void main(String[] args) {
 		Scanner scnr = new Scanner(System.in);
 		ArrayList<BankAccount> accountListings = new ArrayList<BankAccount>();
@@ -258,11 +246,11 @@ public class ABCBankSystem {
 				checkBalance(accountListings);
 			}
 			else {
-				printAccounts(accountListings);				
+				printAccounts(accountListings);
 			}
 			userNeeds = mainLoop(scnr);
 		}
-		
+
 		System.out.print("Thanks for doing business with ABC Bank!");
-	}	
+	}
 }

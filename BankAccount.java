@@ -1,21 +1,9 @@
-/***
- =================
-Name: Nicole Wilbur
-
-Project Name: CSC372-CTA01 -- PORTFOLIO MILESTONE #1 Corrections
-
-4/11/21 updates: comments along side code.
-	Summary, corrected spelling mistake, capitalized "withdrawal" on button, included a try/catch handler and message for 
-	non-numerical input.
-==================
- ***/
-
 public class BankAccount {
 	private String firstName;
 	private String lastName;
 	private int accountID;
 	protected double balance;
-	
+
 	//default constructor
 	public BankAccount() {
 		firstName = null;
@@ -62,6 +50,6 @@ public class BankAccount {
 	}
 	public String accountSummary() {
 		return ("Account Holder's name: "  + firstName + ", " + lastName + ", Account ID: " + accountID + ", Balance:" + balance);
-		
+
 	}
 }
